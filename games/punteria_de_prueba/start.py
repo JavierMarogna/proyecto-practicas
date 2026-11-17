@@ -28,13 +28,17 @@ def iniciar(pantalla, juego_vuelve_al_menu):
     print("Juego inicializado")
     # dentro de esta funcion cargar sonidos o imagenes del juego
 
+    # cargar fondo
+    ruta_fondo = resolver_ruta_local("fondo.png")
+    imagen_origi = pygame.image.load(ruta_fondo).convert_alpha()
+    estado.imagen_fondo = pygame.transform.scale(imagen_origi, (960, 720))
 
     # cargar imagen
     ruta_img = resolver_ruta_local("blanco.png")
     imagen_original = pygame.image.load(ruta_img).convert_alpha()
 
     #cambia el tamaño de la imagen
-    estado.imagen_blanco = pygame.transform.scale(imagen_original, (300, 300))
+    estado.imagen_blanco = pygame.transform.scale(imagen_original, (250, 250))
     
     # cargar efecto de sonido
     ruta_sfx = resolver_ruta_local(os.path.join("disparo.wav"))
@@ -56,7 +60,7 @@ def actualizar_y_dibujar(pantalla, ojo_x, ojo_y, parpadeo_click):
     fuente = pygame.font.SysFont("Arial", 24)
     
     # LOGICA DEL JUEGO
-    rect_objetivo = pygame.Rect(estado.pos_objetivo[0], estado.pos_objetivo[1], 300, 300)
+    rect_objetivo = pygame.Rect(estado.pos_objetivo[0], estado.pos_objetivo[1], 250, 250)
     
     # si el usuario mira el objetivo y parpadea
     if parpadeo_click and rect_objetivo.collidepoint(ojo_x, ojo_y):
@@ -66,20 +70,22 @@ def actualizar_y_dibujar(pantalla, ojo_x, ojo_y, parpadeo_click):
         
         # mover el objetivo a otro lado
         import random
-        estado.pos_objetivo = [random.randint(100, ANCHO-300), random.randint(50, ALTO-300)]
-
+        estado.pos_objetivo = [random.randint(100, ANCHO-250), random.randint(50, ALTO-250)]
+        
     # 2. DIBUJAR EN PANTALLA
-    pantalla.fill((30, 40, 50)) # fondo del juego
-    
-    # dibujar objetivo
-    pantalla.blit(estado.imagen_blanco, (estado.pos_objetivo[0], estado.pos_objetivo[1]))
-    
+
+    # dibujar fondo
+    pantalla.blit(estado.imagen_fondo, (0, 0))
+
     # dibujar puntuacion
     texto_puntos = fuente.render(f"Puntos: {estado.puntuacion}", True, (255, 255, 255))
     pantalla.blit(texto_puntos, (50, 50))
-    
+
     texto_Volver = fuente.render("Presiona ESC para salir al menu", True, (200, 200, 200))
     pantalla.blit(texto_Volver, (50, 90))
+
+    # dibujar objetivo
+    pantalla.blit(estado.imagen_blanco, (estado.pos_objetivo[0], estado.pos_objetivo[1]))
     
     # dibujar el puntero del ojo del usuario adentro del juego
     pygame.draw.circle(pantalla, (0, 255, 255), (int(ojo_x), int(ojo_y)), 10)
