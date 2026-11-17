@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manual</title>
+</head>
+<style>
+    body{
+        background-color: rgb(20, 20, 30);
+    }
+    h1{
+        color: white;
+    }
+    h2{
+        font-size:xx-large;
+        background-color: rgb(170, 83, 54);
+        padding: 5px;
+        border-radius: 5px;
+        color:black;
+        margin-left: auto;
+        margin-right: auto;
+        align-self: center;
+    }
+    div{
+        background-color: rgb(255, 229, 195);
+        border-radius: 8px;
+        margin: 10px;
+        display: grid;
+        align-items: center;
+    }
+    p{
+        margin: 8px;
+        font-size: large;
+    }
+    img{
+        border: 2px, rgb(10, 10, 10), solid;
+        border-radius: 2px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 10px;
+        margin-top: 10px;
+        align-self: center;
+    }
+    video{
+        border: 4px, rgb(10, 10, 10), solid;
+        border-radius: 4px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 10px;
+        margin-top: 10px;
+        align-self: center;
+    }
+    .codigo_ej{
+        background-color: rgb(0, 0, 0);
+        color:rgb(255, 255, 255);
+        margin-left: auto;
+        margin-right: auto;
+        align-self: center;
+    }
+</style>
+<body>
+    <h1>Manual de uso para el usuario</h1>
+    <div>
+        <h2>Instalacion e inicio del programa</h2>
+        <p>Antes de poder usar el programa, primero debe instalar Python y las librerias necesarias para el correcto funcionamiento del mismo.</p>
+        <p>Para esto de usar el archivo "Setup" dentro de la carpeta del programa:</p>
+        <img src="Imagenes/setup_img.png">
+        <p>En caso de que el "Setup" no arranque o funcione, puede colocar manualmente los siguientes comandos en la consola/terminal del sistema operativo:</p>
+        <div class="codigo_ej">
+            <p>python -m pip install --upgrade pip</p>
+            <p>pip install opencv-python==4.13.0.92 mediapipe==0.10.35 pygame-ce</p>
+        </div>
+        <p>Una vez instalado Python y sus librerias, puede arraccar el programa usando el archivo "main" que se encuentra en la carpeta del proyecto.</p>
+    </div>
+    <div>
+        <h2>Calibracion</h2>
+        <p>Una vez abierto el programa aparecera la pantalla de seleccion de modo de control, en esta se puede elegir como mover el cursor durante la ejecucion del programa. Para elegir un modo de control, tiene que presionar la tecla correspondiente al modo a utilizar.</p>
+        <p>Los modos de control que el programa incluye son: 1-mano izquierda, 2-mano derecha, 3-ojo izquierdo, 4-ojo derecho y 5-mouse (solo para pruebas). Con las manos, se hace click cerrando el puño, y con los ojos, se hace click pestaneando.</p>
+        <img src="Imagenes/pantalla_modo.png", width=70%>
+        <p>Luego de elegir el modo se abrira la pantalla de calibracion, en esta se deben seguir unos pasos para que programa detecte el moviento.</p>
+        <p>En el caso de las manos, hay que llevar la mano seleccionada a la esquina suprior izquierda de la ventana y presionar Enter, luego hay que llevarla a la esquina inferior derecha de la ventana y presionar Enter:</p>
+        <video src="Imagenes/video_calibracion_manos.mp4", width=70%, autoplay loop muted>Error al cargar video :(</video>
+        <p>En el caso de los ojos, hay que mirar con el ojo seleccionado a la esquina suprior izquierda de la pantalla y presionar Enter, luego hay que mirar la esquina inferior derecha de la pantalla y presionar Enter:</p>
+        <video src="Imagenes/video_calibracion_ojos.mp4", width=70%, autoplay loop muted>Error al cargar video :(</video>
+    </div>
+    <div>
+        <h2>Pantalla principal y juegos</h2>
+        <p>Una vez calibrado el moviento, podra mover el cursor por el menu principal. En este encontrara tres botones, los dos primeros te permiten entrar a los juegos que el programa posee, el ultimo te permite volver a la pantalla de inicio para volver a seleccionar un modo de control y recalibrar el movimiento.</p>
+        <img src="Imagenes/pantalla_principal.png", width=70%>
+        <p>Los juegos de guardan en la carpeta "games", dando la posibilidad de agregar mas de estos de forma sencilla. Los juegos que incluye este programa son: un juego de apuntar a blancos que aparecen aleatoriamente en la pantalla y otro sobre fucionar bloques numerados.</p>
+        <p>A continuacion de muestran videos demostrativos de los mismos:</p>
+        <video src="Imagenes/video_presentacion_punteria.mp4", width=70%, autoplay loop muted>Error al cargar video :(</video>
+        <video src="Imagenes/video_presentacion_fusion.mp4", width=70%, autoplay loop muted>Error al cargar video :(</video>
+        <p>Para salir de los juegos se tiene que presionar la tecla Esc.</p>
+        <p>Si presiona Esc en el munu principal, el programa se cierra.</p>
+    </div>
+</body>
+</html>

@@ -17,10 +17,10 @@ TAMAÑO_COLUMNAS = 5
 TAMAÑO_CASILLA = 100
 MARGEN = 10
 
-GRIS_FONDO = (40, 40, 40)
-GRIS_CASILLA = (60, 60, 60)
-BLANCO = (255, 255, 255)
-FONT = pygame.font.SysFont("Arial", 30)
+GRIS_FONDO = (30, 40, 40)
+GRIS_CASILLA = (100, 110, 110)
+BLANCO = (210, 255, 255)
+FONT = pygame.font.SysFont("Arial", 50)
 
 # MEDIDAS DEL TABLERO
 ANCHO_TABLERO = TAMAÑO_COLUMNAS * TAMAÑO_CASILLA + (TAMAÑO_COLUMNAS + 1) * MARGEN
@@ -122,6 +122,8 @@ def obtener_vecinos_identicos(r, c, valor, visitados):
 def verificar_fusiones_en_tablero(r_centro, c_centro):
     valor_actual = estado.tablero[r_centro][c_centro]
     if valor_actual == 0: return False
+    if valor_actual == 10:
+        estado.bloquear_interfaz = True
 
     visitados = set()
     grupo = obtener_vecinos_identicos(r_centro, c_centro, valor_actual, visitados)
@@ -220,10 +222,10 @@ def actualizar_y_dibujar(pantalla, ojo_x, ojo_y, parpadeo_click):
 
     texto_sig = FONT.render("Próxima:", True, BLANCO)
     
-    pantalla.blit(texto_sig, (estado.offset_x -200 + MARGEN, 95))
+    pantalla.blit(texto_sig, (estado.offset_x -250 + MARGEN, 95))
     
     nivel_sig_imagen = min(estado.pieza_siguiente, NIVEL_MAXIMO_IMAGEN)
     img_interfaz = pygame.transform.scale(IMAGENES_NIVEL[nivel_sig_imagen], (70, 70))
     pantalla.blit(img_interfaz, (estado.offset_x - 70, 100))
 
-    pygame.draw.circle(pantalla, (0, 255, 255), (int(ojo_x), int(ojo_y)), 10)
+    pygame.draw.circle(pantalla, (0, 255, 255), (int(ojo_x), int(ojo_y)), 8)
